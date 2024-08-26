@@ -5,6 +5,7 @@
 import { type Manifest } from "$fresh/server.ts";
 import * as $Countdown from "./islands/Countdown.tsx";
 import * as $Counter from "./islands/Counter.tsx";
+import * as $KvComponent from "./islands/Kv.tsx";
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $api_joke from "./routes/api/joke.ts";
@@ -20,8 +21,9 @@ const manifest = {
     "./routes/index.tsx": $index,
   },
   islands: {
-    "./islands/Counter.tsx": $Counter,
     "./islands/Countdown.tsx": $Countdown,
+    "./islands/Counter.tsx": $Counter,
+    "./islands/Kv.tsx": $KvComponent,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;
