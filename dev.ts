@@ -1,4 +1,5 @@
 #!/usr/bin/env -S deno run -A --watch=static/,routes/
+/// <reference lib="deno.unstable" />
 
 import dev from "$fresh/dev.ts";
 import config from "./fresh.config.ts";

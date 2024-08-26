@@ -1,9 +1,10 @@
-import { Kv, KvKey, openKv } from "@deno/kv";
 import { TodoItem } from "./types.ts";
 
-const TODO_KEY: KvKey = ["todo", "default_user"];
+const { openKv } = Deno;
 
-let kvStore: Kv | null = null;
+const TODO_KEY: Deno.KvKey = ["todo", "default_user"];
+
+let kvStore: Deno.Kv | null = null;
 
 const DenoStore =
     "https://api.deno.com/databases/2530d711-59a2-4b5b-a3ce-a73ed18a10ff/connect";

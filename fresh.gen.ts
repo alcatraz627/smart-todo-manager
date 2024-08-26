@@ -10,7 +10,6 @@ import * as $index from "./routes/index.tsx";
 import * as $todos_index from "./routes/todos/index.tsx";
 import * as $Countdown from "./islands/Countdown.tsx";
 import * as $Counter from "./islands/Counter.tsx";
-import * as $Kv from "./islands/Kv.tsx";
 import * as $NewTodo from "./islands/NewTodo.tsx";
 import * as $TodoList from "./islands/TodoList.tsx";
 import * as $TodoRow from "./islands/TodoRow.tsx";
@@ -28,7 +27,6 @@ const manifest = {
   islands: {
     "./islands/Countdown.tsx": $Countdown,
     "./islands/Counter.tsx": $Counter,
-    "./islands/Kv.tsx": $Kv,
     "./islands/NewTodo.tsx": $NewTodo,
     "./islands/TodoList.tsx": $TodoList,
     "./islands/TodoRow.tsx": $TodoRow,
