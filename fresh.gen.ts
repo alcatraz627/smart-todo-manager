@@ -2,15 +2,19 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import { type Manifest } from "$fresh/server.ts";
-import * as $Countdown from "./islands/Countdown.tsx";
-import * as $Counter from "./islands/Counter.tsx";
-import * as $KvComponent from "./islands/Kv.tsx";
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $api_joke from "./routes/api/joke.ts";
 import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
+import * as $todos_index from "./routes/todos/index.tsx";
+import * as $Countdown from "./islands/Countdown.tsx";
+import * as $Counter from "./islands/Counter.tsx";
+import * as $Kv from "./islands/Kv.tsx";
+import * as $NewTodo from "./islands/NewTodo.tsx";
+import * as $TodoList from "./islands/TodoList.tsx";
+import * as $TodoRow from "./islands/TodoRow.tsx";
+import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
@@ -19,11 +23,15 @@ const manifest = {
     "./routes/api/joke.ts": $api_joke,
     "./routes/greet/[name].tsx": $greet_name_,
     "./routes/index.tsx": $index,
+    "./routes/todos/index.tsx": $todos_index,
   },
   islands: {
     "./islands/Countdown.tsx": $Countdown,
     "./islands/Counter.tsx": $Counter,
-    "./islands/Kv.tsx": $KvComponent,
+    "./islands/Kv.tsx": $Kv,
+    "./islands/NewTodo.tsx": $NewTodo,
+    "./islands/TodoList.tsx": $TodoList,
+    "./islands/TodoRow.tsx": $TodoRow,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

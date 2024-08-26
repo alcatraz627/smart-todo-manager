@@ -1,4 +1,7 @@
 import { type PageProps } from "$fresh/server.ts";
+
+const showBorder = false;
+
 export default function App({ Component }: PageProps) {
   return (
     <html>
@@ -8,7 +11,10 @@ export default function App({ Component }: PageProps) {
         <title>smart-todo-app</title>
         <link rel="stylesheet" href="/styles.css" />
       </head>
-      <body>
+      <body
+        class={"bg-gray-100 h-screen flex flex-col items-center justify-center" +
+          (showBorder ? " border-red-500 border-solid border-4" : "")}
+      >
         <Component />
       </body>
     </html>
