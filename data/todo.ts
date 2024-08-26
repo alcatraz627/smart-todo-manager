@@ -6,8 +6,8 @@ const TODO_KEY: Deno.KvKey = ["todo", "default_user"];
 
 let kvStore: Deno.Kv | null = null;
 
-// const DenoStore =
-//     "https://api.deno.com/databases/2530d711-59a2-4b5b-a3ce-a73ed18a10ff/connect";
+const DenoStore =
+    "https://api.deno.com/databases/2530d711-59a2-4b5b-a3ce-a73ed18a10ff/connect";
 
 // Local file
 // const DenoStore = "./local.sqlite";
@@ -15,8 +15,8 @@ let kvStore: Deno.Kv | null = null;
 
 const initStore = async () => {
     if (kvStore) return;
-    // kvStore = await openKv(DenoStore);
-    kvStore = await openKv();
+    kvStore = await openKv(DenoStore);
+    // kvStore = await openKv();
 };
 
 await initStore();
