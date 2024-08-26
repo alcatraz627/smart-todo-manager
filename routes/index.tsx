@@ -1,4 +1,5 @@
 import { useSignal } from "@preact/signals";
+import Countdown from "../islands/Countdown.tsx";
 import Counter from "../islands/Counter.tsx";
 
 export default function Home() {
@@ -19,6 +20,13 @@ export default function Home() {
           <code class="mx-2">./routes/index.tsx</code> file, and refresh.
         </p>
         <Counter count={count} />
+        <hr />
+        <Countdown
+          target={
+            // date for tomorrow noon
+            new Date(new Date().setHours(24, 0, 0, 0)).toISOString()
+          }
+        />
       </div>
     </div>
   );
