@@ -1,8 +1,4 @@
-import { openKv } from "@deno/kv";
-import {
-    Kv,
-    KvKey,
-} from "../node_modules/.deno/@deno+kv@0.8.1/node_modules/@deno/kv/esm/kv_types.d.ts";
+import { Kv, KvKey, openKv } from "@deno/kv";
 import { TodoItem } from "./types.ts";
 
 const TODO_KEY: KvKey = ["todo", "default_user"];
