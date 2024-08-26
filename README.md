@@ -1,3 +1,21 @@
+## Smart Todo Manager
+This is a simple proof-of-concept for an AI powered todo manager
+
+### Features
+- Simple CRUD Operations
+- AI Powered actions
+- AI Suggested actions
+
+### Todo
+- [ ] Set up and deploy
+- [ ] Add simple localStorage db
+- [ ] Markdown description of todo
+
+- [ ] Integrate OpenAI as a chatbot
+- [ ] Have OpenAI understand a request in terms of user data
+
+---
+
 # Fresh project
 
 Your new Fresh project is ready to go. You can follow the Fresh "Getting
