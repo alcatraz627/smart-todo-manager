@@ -36,5 +36,13 @@
     "jsx": "react-jsx",
     "jsxImportSource": "preact"
   },
-  "nodeModulesDir": true
+  "nodeModulesDir": true,
+  "deploy": {
+    "project": "2d569dee-4d64-4804-b163-15c6f43b5862",
+    "exclude": [
+      "**/node_modules"
+    ],
+    "include": [],
+    "entrypoint": "main.ts"
+  }
 }

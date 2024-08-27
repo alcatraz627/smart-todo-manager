@@ -1,16 +1,11 @@
+import { DenoStore } from "./flags.ts";
 import { TodoItem } from "./types.ts";
 
 const { openKv } = Deno;
 
 const TODO_KEY: Deno.KvKey = ["todo", "default_user"];
 
-const DenoStore =
-    "https://api.deno.com/databases/2530d711-59a2-4b5b-a3ce-a73ed18a10ff/connect";
-
 // Local file
-// const DenoStore = "./local.sqlite";
-// const DenoStore = ":memory:";
-
 const kvStore = await openKv(DenoStore);
 
 export const getTodoList = async (): Promise<TodoItem[]> => {
