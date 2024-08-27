@@ -4,8 +4,6 @@ const { openKv } = Deno;
 
 const TODO_KEY: Deno.KvKey = ["todo", "default_user"];
 
-let kvStore: Deno.Kv | null = null;
-
 const DenoStore =
     "https://api.deno.com/databases/2530d711-59a2-4b5b-a3ce-a73ed18a10ff/connect";
 
@@ -13,13 +11,7 @@ const DenoStore =
 // const DenoStore = "./local.sqlite";
 // const DenoStore = ":memory:";
 
-const initStore = async () => {
-    if (kvStore) return;
-    kvStore = await openKv(DenoStore);
-    // kvStore = await openKv();
-};
-
-await initStore();
+const kvStore = await openKv(DenoStore);
 
 export const getTodoList = async (): Promise<TodoItem[]> => {
     if (!kvStore) throw Error("KV store not initialized");
