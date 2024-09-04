@@ -1,4 +1,4 @@
-import { ChatFireworks } from "@langchain/community/chat_models/fireworks";
+// import { ChatFireworks } from "@langchain/community/chat_models/fireworks";
 import {
     AIMessage,
     HumanMessage,
@@ -8,10 +8,11 @@ import {
 import { ChatOpenAI } from "@langchain/openai";
 import { Tools, ToolsByName } from "./tools.ts";
 
-const fireworksLlm = new ChatFireworks({
-    model: "accounts/fireworks/models/llama-v3p1-70b-instruct",
-    temperature: 0,
-});
+// const fireworksLlm = new ChatFireworks({
+//     model: "accounts/fireworks/models/llama-v3p1-70b-instruct",
+//     temperature: 0,
+//     fireworksApiKey: Deno.env.get("FIREWORKS_API_KEY"),
+// });
 
 const openAiLlm = new ChatOpenAI({
     model: "gpt-3.5-turbo",
