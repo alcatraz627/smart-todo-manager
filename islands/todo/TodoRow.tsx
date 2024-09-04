@@ -38,7 +38,7 @@ export const TodoRow = (
     };
 
     return (
-        <div>
+        <div class={"flex flex-row"}>
             <input
                 type="checkbox"
                 checked={todoItem.completed}
@@ -53,7 +53,7 @@ export const TodoRow = (
             <input
                 type="text"
                 value={todoItem.title}
-                class={"text-lg"}
+                class={"text-lg w-full"}
                 ref={todoTextRef}
             />
 
