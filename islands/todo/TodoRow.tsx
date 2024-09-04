@@ -43,6 +43,12 @@ export const TodoRow = (
                 type="checkbox"
                 checked={todoItem.completed}
                 class="mr-2"
+                onClick={() => {
+                    handleSaveTodo({
+                        ...todoItem,
+                        completed: !todoItem.completed,
+                    });
+                }}
             />
             <input
                 type="text"
