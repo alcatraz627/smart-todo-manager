@@ -18,6 +18,7 @@ const openAiLlm = new ChatOpenAI({
     model: "gpt-3.5-turbo",
     streaming: true,
     temperature: 0,
+    apiKey: Deno.env.get("OPENAI_API_KEY"),
 });
 
 const llm = openAiLlm.bindTools(Tools);
