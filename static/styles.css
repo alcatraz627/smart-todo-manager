@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+ol, ul {
+    list-style: decimal;
+    padding-left: 16px;
+}

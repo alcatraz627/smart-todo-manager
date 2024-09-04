@@ -15,6 +15,13 @@ export const getTodoList = async (): Promise<TodoItem[]> => {
     return todoState.value || [];
 };
 
+export const getTodo = async (id: string): Promise<TodoItem | undefined> => {
+    if (!kvStore) throw Error("KV store not initialized");
+
+    const todoState = await kvStore.get<TodoItem[]>(TODO_KEY);
+    return todoState.value?.find((todo) => todo.id === id);
+};
+
 export const addTodo = async (todo: TodoItem) => {
     if (!kvStore) throw Error("KV store not initialized");
 

@@ -1,5 +1,5 @@
 import { useRef } from "preact/hooks";
-import { TodoItem } from "../data/types.ts";
+import { TodoItem } from "../../data/types.ts";
 
 export interface TodoRowProps {
     todoItem: TodoItem;
@@ -43,6 +43,12 @@ export const TodoRow = (
                 type="checkbox"
                 checked={todoItem.completed}
                 class="mr-2"
+                onClick={() => {
+                    handleSaveTodo({
+                        ...todoItem,
+                        completed: !todoItem.completed,
+                    });
+                }}
             />
             <input
                 type="text"
