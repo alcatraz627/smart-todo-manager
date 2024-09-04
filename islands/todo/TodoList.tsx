@@ -12,7 +12,7 @@ export const TodoList = (
     { todoList, refetch, isRefetching }: TodoListProps,
 ) => {
     return (
-        <div class={"my-4 gap-2 flex flex-col"}>
+        <div class={"my-4 gap-2 flex flex-col w-full"}>
             {todoList.map((todoItem) => (
                 <TodoRow
                     refetch={refetch}
