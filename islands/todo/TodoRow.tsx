@@ -1,5 +1,5 @@
 import { useRef } from "preact/hooks";
-import { TodoItem } from "../data/types.ts";
+import { TodoItem } from "../../data/types.ts";
 
 export interface TodoRowProps {
     todoItem: TodoItem;
