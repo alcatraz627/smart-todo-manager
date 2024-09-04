@@ -81,8 +81,8 @@ export function ChatWidget({ refetch }: ChatWidgetProps) {
     };
 
     return (
-        <div class="w-full mt-6 mb-2">
-            <div class="bg-gray-100 w-full p-6 mb-4 rounded-sm max-h-screen-1/4 overflow-y-auto">
+        <div class="w-full mt-4">
+            <div class="bg-gray-100 w-full p-6 mb-4 rounded-sm overflow-y-auto h-screen max-h-[30vh]">
                 {history.map((msg, idx) => (
                     <div
                         key={idx}
@@ -109,7 +109,7 @@ export function ChatWidget({ refetch }: ChatWidgetProps) {
                 <input
                     disabled={processing}
                     ref={userInputRef}
-                    value="What tools do you have?"
+                    value="Give me a summary"
                     type="text"
                     placeholder="Enter your query here"
                     class={"w-full border-2 border-gray-300 p-2"}

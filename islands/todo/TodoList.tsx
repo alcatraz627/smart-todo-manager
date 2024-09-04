@@ -12,14 +12,19 @@ export const TodoList = (
     { todoList, refetch, isRefetching }: TodoListProps,
 ) => {
     return (
-        <div class={"my-4 gap-2 flex flex-col w-full"}>
-            {todoList.map((todoItem) => (
-                <TodoRow
-                    refetch={refetch}
-                    key={todoItem.id}
-                    todoItem={todoItem}
-                />
-            ))}
+        <div
+            class={"my-2 gap-2 flex flex-col w-full"}
+        >
+            <span class="overflow-auto h-screen max-h-[40vh]">
+                {todoList.map((todoItem) => (
+                    <TodoRow
+                        refetch={refetch}
+                        key={todoItem.id}
+                        todoItem={todoItem}
+                    />
+                ))}
+                {todoList.length === 0 && <div>No todos</div>}
+            </span>
             <hr />
             <NewTodo
                 refetch={refetch}
