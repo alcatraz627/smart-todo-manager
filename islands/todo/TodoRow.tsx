@@ -38,11 +38,11 @@ export const TodoRow = (
     };
 
     return (
-        <div class={"flex flex-row"}>
+        <li class={"flex flex-row max-w-[800px] content-center h-[45px]"}>
             <input
-                type="checkbox"
+                type="checkbox checkbox-lg"
                 checked={todoItem.completed}
-                class="mr-2"
+                class="checkbox"
                 onClick={() => {
                     handleSaveTodo({
                         ...todoItem,
@@ -53,7 +53,7 @@ export const TodoRow = (
             <input
                 type="text"
                 value={todoItem.title}
-                class={"text-lg w-full"}
+                class={"input input-sm w-[60%]"}
                 ref={todoTextRef}
             />
 
@@ -61,20 +61,22 @@ export const TodoRow = (
                 type="submit"
                 name="id"
                 value={todoItem.id}
-                class="font-mono text-sm mx-1 hover:text-green-500 align-middle"
+                class="btn btn-outline btn-info btn-sm mx-2"
                 onClick={() => handleSaveTodo(todoItem)}
+                title="update"
             >
-                update
+                u
             </button>
             <button
                 type="submit"
                 name="id"
                 value={todoItem.id}
-                class="font-mono text-sm  mx-1 rounded-full hover:text-red-500 align-middle"
+                class="btn btn-outline btn-error btn-sm"
                 onClick={() => handleDeleteTodo(todoItem)}
+                title="delete"
             >
-                delete
+                d
             </button>
-        </div>
+        </li>
     );
 };

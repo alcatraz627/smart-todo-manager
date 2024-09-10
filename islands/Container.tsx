@@ -1,9 +1,15 @@
 import { useState } from "preact/hooks";
+import { ChatItem } from "../data/history.ts";
 import { TodoItem } from "../data/types.ts";
 import { ChatWidget } from "./chat/ChatWidget.tsx";
 import { TodoList } from "./todo/TodoList.tsx";
 
-export const Container = ({ initialTodos }: { initialTodos: TodoItem[] }) => {
+export const Container = (
+    { initialTodos, initialHistory }: {
+        initialTodos: TodoItem[];
+        initialHistory: ChatItem[];
+    },
+) => {
     const [todoList, setTodoList] = useState(initialTodos);
     const [isRefetching, setIsRefetching] = useState(false);
 
@@ -22,28 +28,20 @@ export const Container = ({ initialTodos }: { initialTodos: TodoItem[] }) => {
     };
 
     return (
-        <div class="my-4 px-4 py-2 mx-auto w-11/12 mb-auto">
-            <div class="bg-white rounded-sm border-x-4 py-4 mb-4">
-                <div class="max-w-screen-md mx-auto flex flex-col items-start flex-start">
-                    <h2 class={"text-3xl font-light"}>
-                        Todo Manager
-                    </h2>
-                    <TodoList
-                        todoList={todoList}
-                        refetch={refetch}
-                        isRefetching={isRefetching}
-                    />
-                </div>
+        <div class="mx-0 w-full my-auto h-full flex flex-col">
+            <div class="flex-1">
+                <TodoList
+                    todoList={todoList}
+                    refetch={refetch}
+                    isRefetching={isRefetching}
+                />
             </div>
-
-            <div class="bg-white rounded-sm border-x-4 py-4">
-                <div class="max-w-screen-md mx-auto flex flex-col items-start flex-start">
-                    <h2 class={"text-3xl font-light"}>
-                        Chat
-                    </h2>
-                    {/* TODO: Chat App */}
-                    <ChatWidget refetch={refetch} />
-                </div>
+            <div class="flex-1">
+                <div class="divider h-50">Smart Todo App</div>
+                <ChatWidget
+                    refetch={refetch}
+                    initialHistory={initialHistory}
+                />
             </div>
         </div>
     );

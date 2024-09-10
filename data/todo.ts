@@ -1,9 +1,9 @@
-import { DenoStore } from "./flags.ts";
+import { DenoStore, USER_NAME } from "./flags.ts";
 import { TodoItem } from "./types.ts";
 
 const { openKv } = Deno;
 
-const TODO_KEY: Deno.KvKey = ["todo", "default_user"];
+const TODO_KEY: Deno.KvKey = ["todo", USER_NAME];
 
 // Local file
 const kvStore = await openKv(DenoStore);

@@ -1,3 +1,4 @@
+import { Loader } from "../../components/Loader.tsx";
 import { TodoItem } from "../../data/types.ts";
 import { NewTodo } from "./NewTodo.tsx";
 import { TodoRow } from "./TodoRow.tsx";
@@ -12,24 +13,26 @@ export const TodoList = (
     { todoList, refetch, isRefetching }: TodoListProps,
 ) => {
     return (
-        <div
-            class={"my-2 gap-2 flex flex-col w-full"}
-        >
-            <span class="overflow-auto h-screen max-h-[40vh]">
-                {todoList.map((todoItem) => (
-                    <TodoRow
-                        refetch={refetch}
-                        key={todoItem.id}
-                        todoItem={todoItem}
-                    />
-                ))}
-                {todoList.length === 0 && <div>No todos</div>}
-            </span>
-            <hr />
+        <div class="w-full min-h-50vh flex flex-col">
             <NewTodo
                 refetch={refetch}
             />
-            {isRefetching && <div>Processing...</div>}
+            {isRefetching && <Loader type="spinner" />}
+
+            <div
+                class={"flex-1 gap-2 flex flex-col overflow-y-auto max-h-[50vh] w-100"}
+            >
+                <ul class="menu bg-grey-300 rounded-box w-100">
+                    {todoList.map((todoItem) => (
+                        <TodoRow
+                            refetch={refetch}
+                            key={todoItem.id}
+                            todoItem={todoItem}
+                        />
+                    ))}
+                    {todoList.length === 0 && <div>No todos</div>}
+                </ul>
+            </div>
         </div>
     );
 };
