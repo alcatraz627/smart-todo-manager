@@ -1,5 +1,24 @@
 import { defineRoute } from "$fresh/server.ts";
+import { pushToHistory } from "../../data/history.ts";
 import { promptLlm } from "./llm.ts";
+
+// TODO: Move to utils file
+export const jsonResponse = <T extends unknown>(
+    data: T,
+    status = 200,
+    headers = {},
+    ...rest: unknown[]
+) => new Response(
+    JSON.stringify(data),
+    {
+        headers: {
+            "content-type": "application/json",
+            ...headers,
+        },
+        status,
+        ...rest,
+    },
+);
 
 export const handler = {
     POST: defineRoute(async (req) => {
@@ -13,19 +32,8 @@ export const handler = {
         };
 
         if (!question) {
-            return new Response(
-                JSON.stringify({ message: "No question provided" }),
-                {
-                    status: 400,
-
-                    headers: {
-                        "content-type": "application/json",
-                    },
-                },
-            );
+            return jsonResponse({ message: "No question provided" });
         }
-
-        const chatHistory = [...history, question];
 
         // if (shouldStream) {
         //     const llmResponseStream = await streamLlm(chatHistory, todos);
@@ -37,17 +45,16 @@ export const handler = {
         //     });
         // }
 
+        // Add to history
+        await pushToHistory(["user", question]);
+
         const response = await promptLlm(
-            chatHistory,
+            [...history, question],
         );
 
-        return new Response(
-            JSON.stringify(response),
-            {
-                headers: {
-                    "content-type": "application/json",
-                },
-            },
-        );
+        // Add to history
+        await pushToHistory(["system", response.content as string]);
+
+        return jsonResponse(response);
     }),
 };

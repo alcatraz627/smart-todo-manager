@@ -38,7 +38,7 @@ export const TodoRow = (
     };
 
     return (
-        <div class={"flex flex-row"}>
+        <li class={"flex flex-row"}>
             <input
                 type="checkbox"
                 checked={todoItem.completed}
@@ -75,6 +75,6 @@ export const TodoRow = (
             >
                 delete
             </button>
-        </div>
+        </li>
     );
 };

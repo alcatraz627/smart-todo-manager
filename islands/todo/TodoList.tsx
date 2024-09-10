@@ -13,9 +13,9 @@ export const TodoList = (
 ) => {
     return (
         <div
-            class={"my-2 gap-2 flex flex-col w-full"}
+            class={"my-2 gap-2 flex flex-col w-full overflow-y-auto h-screen max-h-[40vh]"}
         >
-            <span class="overflow-auto h-screen max-h-[40vh]">
+            <ul class="menu bg-base-200 rounded-box w-100">
                 {todoList.map((todoItem) => (
                     <TodoRow
                         refetch={refetch}
@@ -24,7 +24,7 @@ export const TodoList = (
                     />
                 ))}
                 {todoList.length === 0 && <div>No todos</div>}
-            </span>
+            </ul>
             <hr />
             <NewTodo
                 refetch={refetch}

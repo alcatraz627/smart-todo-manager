@@ -1,6 +1,7 @@
 import { assert } from "$std/assert/assert.ts";
 import { tool } from "@langchain/core/tools";
 import { z } from "npm:zod";
+import { resetHistory } from "../../data/history.ts";
 import {
     addTodo,
     deleteTodo,
@@ -9,6 +10,7 @@ import {
     updateTodo,
 } from "../../data/todo.ts";
 
+// I- Calculator
 const calculatorSchema = z.object({
     operation: z.enum(["add", "subtract", "multiply", "divide"]).describe(
         "Type of operations the calculator can do",
@@ -35,6 +37,7 @@ export const calculatorTool = tool(({ operation, number1, number2 }) => {
     schema: calculatorSchema,
 });
 
+// II- Todo CRUD
 const todoSchema = z.object({
     action: z.enum(["list", "view", "delete", "edit", "create"]).describe(
         "Type of action to perform on a todo",
@@ -49,7 +52,7 @@ const todoSchema = z.object({
 });
 
 export const todoTool = tool(async ({ action, id, todoData }) => {
-    console.log("Called todo Tool with", { action, id, todoData });
+    console.log("Called todo tool with", { action, id, todoData });
     if (action === "list") {
         return ["List of all the todos", await getTodoList()];
     } else if (action === "view") {
@@ -79,9 +82,33 @@ export const todoTool = tool(async ({ action, id, todoData }) => {
     schema: todoSchema,
 });
 
-export const Tools = [calculatorTool, todoTool];
+// III- Reset Chat
+const resetChatSchema = z.object({
+    action: z.enum(["reset"]).describe("Action to reset the chat history"),
+});
+
+export const resetChatTool = tool(async ({ action }) => {
+    if (action === "reset") {
+        // Reset the chat history
+        await resetHistory();
+        return "Chat history reset successfully";
+    } else {
+        throw new Error("Invalid action.");
+    }
+}, {
+    name: "resetChat",
+    description: "Reset chat history",
+    schema: resetChatSchema,
+});
+
+export const Tools = [calculatorTool, todoTool, resetChatTool];
 
 export const ToolsByName = new Map<string, typeof Tools[number]>([
     ["todo", todoTool],
     ["calculator", calculatorTool],
+    ["resetChat", resetChatTool],
+    // Add more tools here
+    // Motivational quotes
+    // Weather
+    // Jokes
 ]);
