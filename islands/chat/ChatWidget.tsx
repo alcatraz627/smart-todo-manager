@@ -24,6 +24,18 @@ function readChunks(reader: ReadableStreamDefaultReader<Uint8Array>) {
     };
 }
 
+const Loader = ({ classNames = "" }: { classNames: string }) => (
+    <div class={classNames}>
+        {Array.from(Array(3)).map((_v, idx) => (
+            <span
+                key={idx}
+                className="loading loading-infinity loading-sm text-primary"
+            >
+            </span>
+        ))}
+    </div>
+);
+
 export function ChatWidget(
     { refetch, initialHistory: initialHistory = [] }: ChatWidgetProps,
 ) {
@@ -98,8 +110,8 @@ export function ChatWidget(
                     </div>
                 ))}
             </div>
-            <div>
-                {processing ? "Fetching..." : ""}
+            <div class="relative top-[-40px] pl-6">
+                {processing ? <Loader classNames="absolute green-200" /> : ""}
             </div>
             <form
                 ref={formRef}
