@@ -28,24 +28,20 @@ export const Container = (
     };
 
     return (
-        <div class="my-4 px-4 py-2 mx-auto w-11/12 mb-auto">
-            <div class="bg-white rounded-sm border-x-4 py-4 mb-4">
-                <div class="max-w-screen-md mx-auto flex flex-col items-start flex-start">
-                    <TodoList
-                        todoList={todoList}
-                        refetch={refetch}
-                        isRefetching={isRefetching}
-                    />
-                </div>
+        <div class="mx-0 w-full my-auto h-full flex flex-col">
+            <div class="flex-1">
+                <TodoList
+                    todoList={todoList}
+                    refetch={refetch}
+                    isRefetching={isRefetching}
+                />
             </div>
-
-            <div class="bg-white rounded-sm border-x-4 py-4">
-                <div class="max-w-screen-md mx-auto flex flex-col items-start flex-start">
-                    <ChatWidget
-                        refetch={refetch}
-                        initialHistory={initialHistory}
-                    />
-                </div>
+            <div class="flex-1">
+                <div class="divider h-50">Smart Todo App</div>
+                <ChatWidget
+                    refetch={refetch}
+                    initialHistory={initialHistory}
+                />
             </div>
         </div>
     );

@@ -1,7 +1,8 @@
 // import { useSignal } from "@preact/signals";
 // import { CSS } from "$gfm";
 import { AIMessageChunk } from "@langchain/core/messages";
-import { useRef, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
+import { Loader } from "../../components/Loader.tsx";
 import { ChatItem } from "../../data/history.ts";
 import { RichText } from "./RichText.tsx";
 
@@ -23,18 +24,6 @@ function readChunks(reader: ReadableStreamDefaultReader<Uint8Array>) {
         },
     };
 }
-
-const Loader = ({ classNames = "" }: { classNames: string }) => (
-    <div class={classNames}>
-        {Array.from(Array(3)).map((_v, idx) => (
-            <span
-                key={idx}
-                className="loading loading-infinity loading-sm text-primary"
-            >
-            </span>
-        ))}
-    </div>
-);
 
 export function ChatWidget(
     { refetch, initialHistory: initialHistory = [] }: ChatWidgetProps,
@@ -95,9 +84,21 @@ export function ChatWidget(
         }
     };
 
+    useEffect(() => {
+        scrollToBottom();
+    }, [history.length]);
+
+    const scrollToBottom = () => {
+        const chatBox = document.querySelector("#history-list");
+        chatBox?.scrollTo(0, chatBox.scrollHeight);
+    };
+
     return (
-        <div class="w-full mt-4">
-            <div class="bg-gray-100 w-full p-6 mb-4 rounded-sm overflow-y-auto h-screen max-h-[30vh]">
+        <div class="w-full h-[50vh] flex flex-col">
+            <div
+                id="history-list"
+                class="w-full p-6 mb-4 rounded-sm overflow-y-auto bg-gray-50"
+            >
                 {history.map((msg, idx) => (
                     <div
                         key={idx}
@@ -110,9 +111,18 @@ export function ChatWidget(
                     </div>
                 ))}
             </div>
+
             <div class="relative top-[-40px] pl-6">
-                {processing ? <Loader classNames="absolute green-200" /> : ""}
+                {processing &&
+                    (
+                        <Loader
+                            type="infinity"
+                            parentClass="absolute green-200"
+                            freq={3}
+                        />
+                    )}
             </div>
+            {/* TODO: Separate component */}
             <form
                 ref={formRef}
                 onSubmit={(e) => {
@@ -127,7 +137,7 @@ export function ChatWidget(
                     value=""
                     type="text"
                     placeholder="Enter your query here"
-                    class={"w-full border-2 border-gray-300 p-2"}
+                    class={"input input-bordered input-lg w-[98%] mb-2 mx-[1%]"}
                     name="question"
                 />
                 <input type="submit" hidden />

@@ -40,7 +40,7 @@ export const calculatorTool = tool(({ operation, number1, number2 }) => {
 // II- Todo CRUD
 const todoSchema = z.object({
     action: z.enum(["list", "view", "delete", "edit", "create"]).describe(
-        "Type of action to perform on a todo",
+        "Type of action to perform on a todo. Use the id parameter for view, edit, and delete actions.",
     ),
     id: z.string().optional().describe(
         "ID of the todo. Not the title. The todo object will have the id parameter. Use this for View, Edit, and Delete. ",

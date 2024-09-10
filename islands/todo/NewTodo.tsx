@@ -20,18 +20,18 @@ export const NewTodo = ({ refetch }: NewTodoProps) => {
     };
 
     return (
-        <div>
+        <div class="py-4 px-4">
             <input
                 type="text"
                 name="title"
                 ref={todoTextRef}
                 placeholder={"Add new todo"}
-                class={"text-lg px-2 border-gray-200 hover:border-gray-500 transition-all border-2"}
+                class={"input input-bordered input-sm w-full max-w-xs"}
             />
             <button
                 onClick={handleSaveTodo}
                 // disabled={!newTodoTitle.length}
-                class={"mx-2 bg-gray-100 hover:enabled:bg-gray-300 transition-all rounded-sm text-gray-700 disabled:text-gray-300 px-4 py-1"}
+                class={"btn btn-info btn-outline btn-sm"}
             >
                 Add
             </button>
