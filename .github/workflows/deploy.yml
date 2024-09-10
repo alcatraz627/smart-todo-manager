@@ -1,9 +1,9 @@
 name: Deploy
 on:
   push:
-    branches: dev
+    branches: main
   pull_request:
-    branches: dev
+    branches: main
 
 jobs:
   deploy:
@@ -28,7 +28,7 @@ jobs:
           DENO_KV_ACCESS_TOKEN: ${{ secrets.DENO_KV_ACCESS_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: "deno -E task build"
-    
+
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
