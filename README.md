@@ -1,5 +1,8 @@
 ## Smart Todo Manager
-This is a simple proof-of-concept for an AI powered todo manager
+A simple todo manager with a deep AI integration
+
+![image](https://github.com/user-attachments/assets/3353af40-2574-4191-89d3-9c384fded459)
+
 
 ### Features
 - Simple CRUD Operations
